@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.0 on win32)" generated="20261119 18:37:34.644" rpa="false" schemaversion="4">
+<suite id="s1" name="Bake Tests" source="C:\CICD-Jenkins-Practice\Bake-Automation\bake_tests.robot">
+<test id="s1-t1" name="Bake Accepts Valid Temperature" line="9">
+<kw name="Run Process" library="Process">
+<var>${bake_result}</var>
+<arg>${BAKE_EXE}</arg>
+<arg>350</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20261119 18:37:34.676" level="INFO">Starting process:
+C:/CICD-Jenkins-Practice/Bake/bake.exe 350</msg>
+<msg timestamp="20261119 18:37:34.695" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20261119 18:37:34.720" level="INFO">Process completed.</msg>
+<msg timestamp="20261119 18:37:34.720" level="INFO">${bake_result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20261119 18:37:34.675" endtime="20261119 18:37:34.720"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${bake_result.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20261119 18:37:34.721" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20261119 18:37:34.721" endtime="20261119 18:37:34.721"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${bake_result.stdout}</arg>
+<arg>STATE=BAKE TEMPERATURE=350</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20261119 18:37:34.721" endtime="20261119 18:37:34.723"/>
+</kw>
+<status status="PASS" starttime="20261119 18:37:34.675" endtime="20261119 18:37:34.723"/>
+</test>
+<test id="s1-t2" name="Bake Rejects Temperature Above Maximum" line="14">
+<kw name="Run Process" library="Process">
+<var>${bake_result}</var>
+<arg>${BAKE_EXE}</arg>
+<arg>700</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20261119 18:37:34.724" level="INFO">Starting process:
+C:/CICD-Jenkins-Practice/Bake/bake.exe 700</msg>
+<msg timestamp="20261119 18:37:34.737" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20261119 18:37:34.756" level="INFO">Process completed.</msg>
+<msg timestamp="20261119 18:37:34.756" level="INFO">${bake_result} = &lt;result object with rc 1&gt;</msg>
+<status status="PASS" starttime="20261119 18:37:34.723" endtime="20261119 18:37:34.756"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${bake_result.rc}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20261119 18:37:34.756" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20261119 18:37:34.756" endtime="20261119 18:37:34.756"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${bake_result.stdout}</arg>
+<arg>out of range</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20261119 18:37:34.758" endtime="20261119 18:37:34.758"/>
+</kw>
+<status status="PASS" starttime="20261119 18:37:34.723" endtime="20261119 18:37:34.758"/>
+</test>
+<test id="s1-t3" name="Bake Rejects Temperature Below Minimum" line="19">
+<kw name="Run Process" library="Process">
+<var>${bake_result}</var>
+<arg>${BAKE_EXE}</arg>
+<arg>100</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20261119 18:37:34.759" level="INFO">Starting process:
+C:/CICD-Jenkins-Practice/Bake/bake.exe 100</msg>
+<msg timestamp="20261119 18:37:34.775" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20261119 18:37:34.795" level="INFO">Process completed.</msg>
+<msg timestamp="20261119 18:37:34.795" level="INFO">${bake_result} = &lt;result object with rc 1&gt;</msg>
+<status status="PASS" starttime="20261119 18:37:34.759" endtime="20261119 18:37:34.795"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${bake_result.rc}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20261119 18:37:34.796" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20261119 18:37:34.796" endtime="20261119 18:37:34.796"/>
+</kw>
+<status status="PASS" starttime="20261119 18:37:34.758" endtime="20261119 18:37:34.797"/>
+</test>
+<doc>Bake feature tests that run the compiled bake.exe</doc>
+<status status="PASS" starttime="20261119 18:37:34.648" endtime="20261119 18:37:34.797"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Bake Tests">Bake Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
